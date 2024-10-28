@@ -177,13 +177,20 @@ with st.container(border=True):
                             y=0.4,
                             text=f'{shot_result}%',
                             showarrow=False,
-                            font=dict(size=10)
+                            font=dict(size=10, color='white')
                         )
+        
+        fig1.add_annotation(x=(i+1.35+i+0.65+(0.2 * (i // 5))+(0.2 * (i // 5)))/2,
+                    y=0,
+                    text=f'{i+1}',
+                    showarrow=False,
+                    font=dict(size=10, color='white')
+                )
 
 
     # Update layout for better visualization
     fig1.update_layout(
-        title=f"Accuracy by shot number",
+        title=dict(text=f"Accuracy by shot number", font=dict(size=22, color='white')),
         showlegend=False,
         yaxis=dict(
             range=[0, 0.4],
@@ -195,12 +202,19 @@ with st.container(border=True):
             showgrid=False,
             visible=False
         ),
-        height=250
+        height=250,
+        width=900,
+        paper_bgcolor='#0f1116',
+        plot_bgcolor='#0f1116'
     )
 
-    config1 = {'staticPlot': True}
+    # config1 = {'staticPlot': True}
 
-    st.plotly_chart(fig1, config=config1)
+    # st.plotly_chart(fig1, config=config1)
+
+    fig1.write_image('fig1.jpg', scale=2.0)
+
+    st.image('fig1.jpg')
 
 
 # Results by target direction
@@ -223,7 +237,7 @@ with st.container(border=True):
                         y=1.25,
                         text=f'<b>{dirs_descriptions[i]}</b>',
                         showarrow=False,
-                        font=dict(size=15)
+                        font=dict(size=15, color='white')
                     ) 
 
         if is_detailed:
@@ -267,7 +281,7 @@ with st.container(border=True):
                                     y=sum(y_tuple[i])/2,
                                     text=f'{direction_result}%',
                                     showarrow=False,
-                                    font=dict(size=12)
+                                    font=dict(size=12, color='white')
                                 )   
 
                 # Add direction description
@@ -275,11 +289,11 @@ with st.container(border=True):
                                     y=sum(y_tuple[i])/2,
                                     text=direction_descriptions[i],
                                     showarrow=False,
-                                    font=dict(size=12)
+                                    font=dict(size=12, color='white')
                                 )                                            
 
             fig2.update_layout(
-                title="Accuracy by target direction",
+                title=dict(text="Accuracy by target direction", font=dict(color='white')),
                 showlegend=False,
                 yaxis=dict(
                     range=[0, 1.3],
@@ -291,7 +305,9 @@ with st.container(border=True):
                     showgrid=False,
                     visible=False
                 ),
-                height=500
+                height=500,
+                paper_bgcolor='#0f1116',
+                plot_bgcolor='#0f1116'
             )
 
         else:
@@ -329,11 +345,11 @@ with st.container(border=True):
                                     y=1.05,
                                     text=f'{direction_result}%',
                                     showarrow=False,
-                                    font=dict(size=20)
+                                    font=dict(size=20, color='white')
                                 )
 
             fig2.update_layout(
-                title="Accuracy by target direction",
+                title=dict(text="Accuracy by target direction", font=dict(size=22, color='white')),
                 showlegend=False,
                 yaxis=dict(
                     range=[0, 1.3],
@@ -345,9 +361,15 @@ with st.container(border=True):
                     showgrid=False,
                     visible=False
                 ),
-                height=350
+                height=350,
+                paper_bgcolor='#0f1116',
+                plot_bgcolor='#0f1116'
             )
 
-        config2 = {'staticPlot': True}
+        # config2 = {'staticPlot': True}
 
-        st.plotly_chart(fig2, config=config2)
+        # st.plotly_chart(fig2, config=config2)
+
+        fig2.write_image('fig2.jpg', scale=2.0)
+
+        st.image('fig2.jpg')
