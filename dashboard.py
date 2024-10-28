@@ -111,29 +111,38 @@ with st.container(border=True):
             y=df_chart['avg_score'][i] + y_align, 
             text=df_chart['avg_score'][i],
             showarrow=False,
+            font=dict(color='white')
         )
 
     # Update layout for better visualization
     fig.update_layout(
-        title="Average score over time",
-        xaxis_title=time_grain,
-        yaxis_title="Average score",
+        title=dict(text="Average score over time", font=dict(color='white')),
+        xaxis_title=dict(text=time_grain, font=dict(color='white')),
+        yaxis_title=dict(text="Average score", font=dict(color='white')),
         showlegend=False,
         xaxis = dict(
             tickmode = 'array',
             tickvals = df_chart['date'],
-            ticktext = df_chart['date']
+            ticktext = df_chart['date'],
+            color='white'
         ),
         yaxis = dict(
             tickmode = 'linear',
             tick0 = df_chart['avg_score'].min(),
-            dtick = 0.2
+            dtick = 0.2,
+            color='white'
         ),
+        paper_bgcolor='#0f1116',
+        plot_bgcolor='#0f1116'
     )
 
-    config = {'staticPlot': True}
+    # config = {'staticPlot': True}
 
-    st.plotly_chart(fig, config=config)
+    # st.plotly_chart(fig, config=config)
+
+    fig.write_image('fig.jpg', scale=2.0)
+
+    st.image('fig.jpg')
 
 
 # Results by shot number
